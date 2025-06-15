@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Админ-панель — Заявки</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0a3c73;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #e9f0fb;
+            color: #0a3c73;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            width: 250px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #0a3c73;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #filterInput {
+            padding: 8px;
+            width: 250px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container" id="loginContainer">
+        <h1>Админ-панель</h1>
+        <p>Введите пароль для доступа:</p>
+        <input type="password" id="passwordInput" placeholder="Пароль" />
+        <button onclick="checkPassword()">Войти</button>
+        <p id="loginError" style="color: red;"></p>
+    </div>
+
+    <div class="container hidden" id="adminContainer">
+        <div class="top-bar">
+            <input type="text" id="filterInput" placeholder="Поиск по имени или email..." oninput="filterTable()" />
+            <button onclick="downloadCSV()">Скачать CSV</button>
+        </div>
+
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Email</th>
+                    <th>Сообщение</th>
+                    <th>Дата</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        const PASSWORD = "D5171015don";
+        const SHEET_ID = "1E-qUZTLMb-GZl16JP8meIO9YXVj0AfrYTbaiL20yLFc";
+        const SHEET_NAME = "Заявки StopObman";
+
+        function checkPassword() {
+            const input = document.getElementById("passwordInput").value;
+            if (input === PASSWORD) {
+                document.getElementById("loginContainer").classList.add("hidden");
+                document.getElementById("adminContainer").classList.remove("hidden");
+                loadData();
+            } else {
+                document.getElementById("loginError").textContent = "Неверный пароль";
+            }
+        }
+
+        function loadData() {
+            const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+            fetch(url)
+                .then(res => res.text())
+                .then(data => {
+                    const json = JSON.parse(data.substr(47).slice(0, -2));
+                    const rows = json.table.rows;
+
+                    const tableBody = document.querySelector("#dataTable tbody");
+                    tableBody.innerHTML = "";
+
+                    rows.forEach(row => {
+                        const tr = document.createElement("tr");
+                        const cells = row.c;
+                        const name = cells[0]?.v || "";
+                        const email = cells[1]?.v || "";
+                        const message = cells[2]?.v || "";
+                        const timestamp = cells[3]?.v || "";
+
+                        tr.innerHTML = `
+              <td>${name}</td>
+              <td>${email}</td>
+              <td>${message}</td>
+              <td>${timestamp}</td>
+            `;
+                        tableBody.appendChild(tr);
+                    });
+                });
+        }
+
+        function filterTable() {
+            const filter = document.getElementById("filterInput").value.toLowerCase();
+            const rows = document.querySelectorAll("#dataTable tbody tr");
+            rows.forEach(row => {
+                const name = row.cells[0].textContent.toLowerCase();
+                const email = row.cells[1].textContent.toLowerCase();
+                row.style.display = name.includes(filter) || email.includes(filter) ? "" : "none";
+            });
+        }
+
+        function downloadCSV() {
+            let csv = "Имя,Email,Сообщение,Дата\n";
+            const rows = document.querySelectorAll("#dataTable tbody tr");
+            rows.forEach(row => {
+                const cols = Array.from(row.cells).map(td => `"${td.textContent}"`);
+                csv += cols.join(",") + "\n";
+            });
+
+            const blob = new Blob([csv], { type: "text/csv" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "zayavki.csv";
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+
+</body>
+
+</html>

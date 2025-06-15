@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Горячая линия помощи пострадавшим от мошенников</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1>Горячая линия помощи</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="services.html">Услуги</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="blog.html">Блог</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="overlay">
+            <div class="hero-content">
+                <h2>Вы стали жертвой мошенников?</h2>
+                <p>Наша команда поможет вам: юридическая поддержка, консультации, анализ схем.</p>
+                <a href="#form" class="btn">Оставить заявку</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h3>Наши ключевые услуги</h3>
+            <ul>
+                <li>✓ Юридическая поддержка</li>
+                <li>✓ Консультации по возврату средств</li>
+                <li>✓ Анализ мошеннических схем</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="form" class="form-section" style="padding: 40px 20px; background-color: #f9f9f9;">
+        <div class="container" style="max-width: 600px; margin: auto;">
+            <h3 style="text-align: center;">Оставьте заявку</h3>
+            <form id="telegramForm">
+                <input type="text" name="name" placeholder="Ваше имя" required />
+                <input type="email" name="email" placeholder="Email" required />
+                <textarea name="message" placeholder="Кратко опишите проблему" rows="5" required></textarea>
+                <button type="submit">Отправить</button>
+                <p id="form-status" style="margin-top: 10px;"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Список юристов, скрыт по умолчанию -->
+    <section id="lawyer-block" class="lawyer-list" style="padding: 40px 20px; background-color: #fff; display: none;">
+        <div class="container" style="max-width: 900px; margin: auto;">
+            <h3 style="text-align: center; margin-bottom: 30px;">Доступные юристы</h3>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                <div
+                    style="width: 280px; border: 1px solid #ddd; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+                    <img src="https://via.placeholder.com/150" alt="Адвокат Куаныш"
+                        style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;">
+                    <h4 style="margin: 10px 0 5px;">Нызымов Куаныш Айтпаевич</h4>
+                    <p style="margin: 0; font-size: 14px;">Адвокат</p>
+                    <p style="margin: 0; font-size: 14px;">📅 Опыт: 5 лет</p>
+                    <p style="margin: 0; font-size: 14px;">📱 +7 775 335 1777</p>
+                    <a href="https://instagram.com/advokatkuanysh" target="_blank"
+                        style="display: inline-block; margin-top: 15px; padding: 10px 15px; background-color: #007bff; color: white; border-radius: 6px; text-decoration: none;">Связаться
+                        в Instagram</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p style="font-size: 12px; margin-top: 10px;">
+                Платформа stopobman.com не оказывает юридические услуги. Все консультации предоставляются независимыми
+                специалистами. Мы не несем ответственности за результат взаимодействия между клиентом и исполнителем.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const botToken = "8140689400:AAGTs2qY3sV-b86_EvhvFc1rczCucbCvKfA";
+        const chatId = "536410466";
+        const googleScriptURL = "https://script.google.com/macros/s/AKfycbwwofTgTzGcZADgYlDk5pCdLXOwfaoA5SFHrsgIhJoyIz2hTLdpaYJVi0U4RcOUt0-F/exec";
+
+        document.getElementById("telegramForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = this.name.value.trim();
+            const email = this.email.value.trim();
+            const message = this.message.value.trim();
+
+            const text = `📩 Новая заявка с сайта:\n\n👤 Имя: ${name}\n📧 Email: ${email}\n📝 Сообщение:\n${message}`;
+
+            // Отправка в Telegram
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ chat_id: chatId, text })
+            });
+
+            // Отправка в Google Таблицу
+            const formData = new FormData();
+            formData.append("name", name);
+            formData.append("email", email);
+            formData.append("message", message);
+
+            fetch(googleScriptURL, {
+                method: "POST",
+                body: formData
+            })
+                .then(() => {
+                    document.getElementById("form-status").innerHTML =
+                        `<span style="color: green;">✅ Спасибо! Ваша заявка получена. Вы можете выбрать юриста из списка ниже.</span>`;
+                    document.getElementById("telegramForm").reset();
+                    document.getElementById("lawyer-block").style.display = "block";
+                })
+                .catch(() => {
+                    document.getElementById("form-status").textContent = "Ошибка при отправке.";
+                    document.getElementById("form-status").style.color = "red";
+                });
+        });
+    </script>
+
+</body>
+
+</html>

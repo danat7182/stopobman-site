@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Контакты — Горячая линия помощи</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .contact-section {
+            padding: 40px 20px;
+            background-color: #ffffff;
+        }
+
+        .contact-box {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact-box p {
+            margin: 10px 0;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .contact-form button {
+            background-color: #1976d2;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #1258a8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1>Горячая линия помощи</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                    <li><a href="services.html">Услуги</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="blog.html">Блог</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact-section">
+        <div class="container contact-box">
+            <h2>Связаться с нами</h2>
+
+            <p><strong>Email:</strong> info@stopobman.com</p>
+            <p><strong>Адрес:</strong> Казахстан (работаем онлайн по всей стране)</p>
+
+            <h3 style="margin-top: 30px;">Обратная форма</h3>
+
+            <form class="contact-form" onsubmit="alert('Форма отправлена!'); return false;">
+                <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="email" name="email" placeholder="Ваш email" required>
+                <textarea name="message" rows="5" placeholder="Ваше сообщение" required></textarea>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
