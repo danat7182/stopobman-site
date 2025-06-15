@@ -37,7 +37,7 @@ body {
 }
 
 .hero {
-    background-image: url("../images/femida-background.jpg");
+    background-image: url("femida-background.jpg");
     background-size: cover;
     background-position: center;
     height: 400px;
