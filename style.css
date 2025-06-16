@@ -1,3 +1,4 @@
+/* Общие стили */
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
@@ -11,6 +12,7 @@ body {
     padding: 0 20px;
 }
 
+/* Шапка */
 .header {
     background-color: #0a3c73;
     color: white;
@@ -24,6 +26,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .nav-links li {
@@ -36,6 +39,11 @@ body {
     font-weight: bold;
 }
 
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Герой-секция */
 .hero {
     background-image: url("femida-background.jpg");
     background-size: cover;
@@ -48,7 +56,7 @@ body {
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.2);
     width: 100%;
     height: 100%;
     display: flex;
@@ -81,10 +89,20 @@ body {
     border-radius: 5px;
 }
 
+.btn:hover {
+    background-color: #125db4;
+}
+
+/* Секция услуг */
 .services {
-    background: white;
+    background-color: #f2f4f7;
     padding: 40px 20px;
     text-align: center;
+}
+
+.services h3 {
+    color: #0a3c73;
+    margin-bottom: 20px;
 }
 
 .services ul {
@@ -97,9 +115,107 @@ body {
     margin-bottom: 10px;
 }
 
+/* Секция формы */
+.form-section {
+    background-color: #f2f4f7;
+    padding: 40px 20px;
+}
+
+.form-section h3 {
+    text-align: center;
+    color: #0a3c73;
+}
+
+.form-section p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #0a3c73;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #084d94;
+}
+
+#form-status {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Секция юристов */
+.lawyer-list {
+    background-color: #ffffff;
+    padding: 40px 20px;
+}
+
+.lawyer-list h3 {
+    text-align: center;
+    color: #0a3c73;
+    margin-bottom: 30px;
+}
+
+.lawyer-list .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.lawyer-list .container > div {
+    width: 280px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.lawyer-list img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.lawyer-list a {
+    color: #0a3c73;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.lawyer-list a:hover {
+    text-decoration: underline;
+}
+
+/* Подвал */
 .footer {
     background-color: #0a3c73;
     color: white;
     text-align: center;
     padding: 20px 0;
+    font-size: 14px;
 }
+
