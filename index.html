@@ -101,55 +101,59 @@
         const chatId = "536410466";
         const googleScriptURL = "https://script.google.com/macros/s/AKfycbwwofTgTzGcZADgYlDk5pCdLXOwfaoA5SFHrsgIhJoyIz2hTLdpaYJVi0U4RcOUt0-F/exec";
 
-        document.getElementById("telegramForm").addEventListener("submit", function (e) {
+        document.getElementById("telegramForm").addEventListener("submit", handleFormSubmit);
+
+        async function handleFormSubmit(e) {
             e.preventDefault();
 
-            const fullname = this.fullname.value.trim();
-            const phone = this.phone.value.trim();
-            const email = this.email.value.trim();
-            const message = this.message.value.trim();
+            const form = document.getElementById("telegramForm");
+            const fullname = form.fullname.value.trim();
+            const phone = form.phone.value.trim();
+            const email = form.email.value.trim();
+            const message = form.message.value.trim();
+            const status = document.getElementById("form-status");
 
             if (!Inputmask.isValid(phone, { mask: "+7 (999) 999-99-99" })) {
-                document.getElementById("form-status").textContent = "❌ Укажите корректный номер телефона.";
-                document.getElementById("form-status").style.color = "red";
-                this.phone.focus();
+                status.textContent = "❌ Укажите корректный номер телефона.";
+                status.style.color = "red";
+                form.phone.focus();
                 return;
             }
 
             const text = `📩 Новая заявка с сайта:\n\n👤 ФИО: ${fullname}\n📱 Телефон: ${phone}\n📧 Email: ${email}\n📝 Сообщение:\n${message}`;
 
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ chat_id: chatId, text })
-            })
-            .then(() => {
-                document.getElementById("form-status").innerHTML =
-                    `<span style="color: green;">✅ Спасибо! Ваша заявка получена. Вы можете выбрать юриста из списка ниже.</span>`;
-                document.getElementById("telegramForm").reset();
+            try {
+                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ chat_id: chatId, text })
+                });
+
+                const formData = new FormData();
+                formData.append("fullname", fullname);
+                formData.append("phone", phone);
+                formData.append("email", email);
+                formData.append("message", message);
+
+                await fetch(googleScriptURL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                status.innerHTML = `<span style="color: green;">✅ Спасибо! Ваша заявка получена. Вы можете выбрать юриста из списка ниже.</span>`;
+                form.reset();
 
                 const lawyerBlock = document.getElementById("lawyer-block");
                 if (lawyerBlock) {
                     lawyerBlock.style.display = "block";
                     lawyerBlock.scrollIntoView({ behavior: "smooth" });
                 }
-            })
-            .catch(() => {
-                document.getElementById("form-status").textContent = "Ошибка при отправке в Telegram.";
-                document.getElementById("form-status").style.color = "red";
-            });
 
-            const formData = new FormData();
-            formData.append("fullname", fullname);
-            formData.append("phone", phone);
-            formData.append("email", email);
-            formData.append("message", message);
-
-            fetch(googleScriptURL, {
-                method: "POST",
-                body: formData
-            });
-        });
+            } catch (error) {
+                status.textContent = "❌ Ошибка при отправке данных. Попробуйте позже.";
+                status.style.color = "red";
+            }
+        }
     </script>
 
 </body>
