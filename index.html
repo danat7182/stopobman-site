@@ -68,10 +68,8 @@
     <section id="lawyer-block" class="lawyer-list" style="padding: 40px 20px; background-color: #fff; display: none;">
         <div class="container" style="max-width: 900px; margin: auto;">
             <h3 style="text-align: center; margin-bottom: 30px;">Доступные юристы</h3>
-
             <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-                <div
-                    style="width: 280px; border: 1px solid #ddd; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+                <div style="width: 280px; border: 1px solid #ddd; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
                     <img src="https://via.placeholder.com/150" alt="Адвокат Куаныш"
                         style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;">
                     <h4 style="margin: 10px 0 5px;">Нызымов Куаныш Айтпаевич</h4>
@@ -81,8 +79,7 @@
                         📱 <a href="tel:+77753351777" style="color: #0a3c73; text-decoration: underline;">+7 775 335 1777</a>
                     </p>
                     <a href="https://instagram.com/advokatkuanysh" target="_blank"
-                        style="display: inline-block; margin-top: 15px; padding: 10px 15px; background-color: #007bff; color: white; border-radius: 6px; text-decoration: none;">Связаться
-                        в Instagram</a>
+                        style="display: inline-block; margin-top: 15px; padding: 10px 15px; background-color: #007bff; color: white; border-radius: 6px; text-decoration: none;">Связаться в Instagram</a>
                 </div>
             </div>
         </div>
@@ -92,14 +89,12 @@
         <div class="container">
             <p>&copy; 2025 Горячая линия помощи. Все права защищены.</p>
             <p style="font-size: 12px; margin-top: 10px;">
-                Платформа stopobman.com не оказывает юридические услуги. Все консультации предоставляются независимыми
-                специалистами. Мы не несем ответственности за результат взаимодействия между клиентом и исполнителем.
+                Платформа stopobman.com не оказывает юридические услуги. Все консультации предоставляются независимыми специалистами. Мы не несем ответственности за результат взаимодействия между клиентом и исполнителем.
             </p>
         </div>
     </footer>
 
     <script>
-        // Маска телефона
         Inputmask({ mask: "+7 (999) 999-99-99" }).mask(document.getElementById("phone"));
 
         const botToken = "8140689400:AAGTs2qY3sV-b86_EvhvFc1rczCucbCvKfA";
@@ -123,38 +118,37 @@
 
             const text = `📩 Новая заявка с сайта:\n\n👤 ФИО: ${fullname}\n📱 Телефон: ${phone}\n📧 Email: ${email}\n📝 Сообщение:\n${message}`;
 
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ chat_id: chatId, text })
+            })
+            .then(() => {
+                document.getElementById("form-status").innerHTML =
+                    `<span style="color: green;">✅ Спасибо! Ваша заявка получена. Вы можете выбрать юриста из списка ниже.</span>`;
+                document.getElementById("telegramForm").reset();
+
+                const lawyerBlock = document.getElementById("lawyer-block");
+                if (lawyerBlock) {
+                    lawyerBlock.style.display = "block";
+                    lawyerBlock.scrollIntoView({ behavior: "smooth" });
+                }
+            })
+            .catch(() => {
+                document.getElementById("form-status").textContent = "Ошибка при отправке в Telegram.";
+                document.getElementById("form-status").style.color = "red";
+            });
+
             const formData = new FormData();
             formData.append("fullname", fullname);
             formData.append("phone", phone);
             formData.append("email", email);
             formData.append("message", message);
 
-            Promise.all([
-                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ chat_id: chatId, text })
-                }),
-                fetch(googleScriptURL, {
-                    method: "POST",
-                    body: formData
-                })
-            ])
-                .then(() => {
-                    document.getElementById("form-status").innerHTML =
-                        `<span style="color: green;">✅ Спасибо! Ваша заявка получена. Вы можете выбрать юриста из списка ниже.</span>`;
-                    document.getElementById("telegramForm").reset();
-
-                    const lawyerBlock = document.getElementById("lawyer-block");
-                    if (lawyerBlock) {
-                        lawyerBlock.style.display = "block";
-                        lawyerBlock.scrollIntoView({ behavior: "smooth" });
-                    }
-                })
-                .catch(() => {
-                    document.getElementById("form-status").textContent = "Ошибка при отправке.";
-                    document.getElementById("form-status").style.color = "red";
-                });
+            fetch(googleScriptURL, {
+                method: "POST",
+                body: formData
+            });
         });
     </script>
 
