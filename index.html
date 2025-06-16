@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Горячая линия помощи пострадавшим от мошенников</title>
   <link rel="stylesheet" href="style.css" />
+  
+  <!-- Подключение маски ввода -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/bindings/inputmask.binding.min.js"></script>
 </head>
 
 <body>
@@ -40,6 +43,7 @@
   <section id="form" style="padding: 40px 20px; background-color: #f4f4f4;">
     <div class="container" style="max-width: 600px; margin: auto;">
       <h3 style="text-align: center;">Оставьте заявку</h3>
+      <p style="text-align: center;">После отправки вы получите доступ к списку специалистов для консультации</p>
       <form id="telegramForm" style="display: flex; flex-direction: column; gap: 15px;">
         <input type="text" name="fullname" placeholder="Полные ФИО" required />
         <input type="text" id="phone" name="phone" placeholder="Телефон" required />
@@ -51,19 +55,17 @@
     </div>
   </section>
 
-  <section id="lawyer-block" style="display: none; padding: 40px 20px; background: #fff;">
+  <section id="lawyer-block" style="display: none; background: #fff; padding: 40px 20px;">
     <div class="container" style="max-width: 800px; margin: auto;">
-      <h3 style="text-align: center; margin-bottom: 30px;">Доступные юристы</h3>
+      <h3 style="text-align: center;">Доступные специалисты</h3>
       <div style="display: flex; justify-content: center;">
-        <div style="text-align: center; border: 1px solid #ccc; border-radius: 10px; padding: 20px; width: 300px;">
-          <img src="https://via.placeholder.com/150" style="border-radius: 50%; margin-bottom: 15px;" />
+        <div style="text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 12px;">
+          <img src="https://via.placeholder.com/150" style="border-radius: 50%; margin-bottom: 10px;" />
           <h4>Нызымов Куаныш Айтпаевич</h4>
-          <p>Адвокат, опыт 5 лет</p>
-          <p><a href="tel:+77753351777" style="color: #0a3c73;">📞 +7 775 335 1777</a></p>
+          <p>Адвокат, опыт: 5 лет</p>
+          <p><a href="tel:+77753351777">📞 +7 775 335 1777</a></p>
           <a href="https://instagram.com/advokatkuanysh" target="_blank"
-            style="display:inline-block; margin-top:10px; background:#007bff; color:#fff; padding:8px 12px; border-radius:6px; text-decoration:none;">
-            Связаться в Instagram
-          </a>
+            style="color: white; background: #007bff; padding: 8px 12px; border-radius: 6px; text-decoration: none;">Instagram</a>
         </div>
       </div>
     </div>
@@ -76,54 +78,61 @@
   </footer>
 
   <script>
-    Inputmask({ mask: "+7 (999) 999-99-99" }).mask(document.getElementById("phone"));
+    window.onload = function () {
+      Inputmask({ mask: "+7 (999) 999-99-99" }).mask(document.getElementById("phone"));
 
-    const botToken = "8140689400:AAGTs2qY3sV-b86_EvhvFc1rczCucbCvKfA";
-    const chatId = "536410466";
-    const googleScriptURL = "https://script.google.com/macros/s/AKfycbwwofTgTzGcZADgYlDk5pCdLXOwfaoA5SFHrsgIhJoyIz2hTLdpaYJVi0U4RcOUt0-F/exec";
+      const botToken = "8140689400:AAGTs2qY3sV-b86_EvhvFc1rczCucbCvKfA";
+      const chatId = "536410466";
+      const googleScriptURL = "https://script.google.com/macros/s/AKfycbwwofTgTzGcZADgYlDk5pCdLXOwfaoA5SFHrsgIhJoyIz2hTLdpaYJVi0U4RcOUt0-F/exec";
 
-    document.getElementById("telegramForm").addEventListener("submit", function (e) {
-      e.preventDefault();
+      document.getElementById("telegramForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
 
-      const form = this;
-      const fullname = form.fullname.value.trim();
-      const phone = form.phone.value.trim();
-      const email = form.email.value.trim();
-      const message = form.message.value.trim();
-      const status = document.getElementById("form-status");
+        const form = e.target;
+        const fullname = form.fullname.value.trim();
+        const phone = form.phone.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+        const status = document.getElementById("form-status");
 
-      const text = `📩 Новая заявка с сайта:\n\n👤 ФИО: ${fullname}\n📱 Телефон: ${phone}\n📧 Email: ${email}\n📝 Сообщение:\n${message}`;
+        const text = `📩 Новая заявка:\n👤 ${fullname}\n📞 ${phone}\n📧 ${email}\n📝 ${message}`;
 
-      // Отправка в Telegram
-      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text })
+        try {
+          // Telegram
+          await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ chat_id: chatId, text })
+          });
+
+          // Google таблица
+          const formData = new FormData();
+          formData.append("fullname", fullname);
+          formData.append("phone", phone);
+          formData.append("email", email);
+          formData.append("message", message);
+
+          await fetch(googleScriptURL, {
+            method: "POST",
+            body: formData
+          });
+
+          // Сообщение и показ юристов
+          status.innerHTML = "✅ Спасибо! Ваша заявка успешно отправлена. Теперь вы можете выбрать специалиста для консультации из списка ниже.";
+          status.style.color = "green";
+          form.reset();
+
+          const lawyerBlock = document.getElementById("lawyer-block");
+          lawyerBlock.style.display = "block";
+          lawyerBlock.scrollIntoView({ behavior: "smooth" });
+
+        } catch (error) {
+          status.innerHTML = "❌ Ошибка при отправке. Попробуйте позже.";
+          status.style.color = "red";
+        }
       });
-
-      // Отправка в Google Таблицу
-      const formData = new FormData();
-      formData.append("fullname", fullname);
-      formData.append("phone", phone);
-      formData.append("email", email);
-      formData.append("message", message);
-
-      fetch(googleScriptURL, {
-        method: "POST",
-        body: formData
-      });
-
-      // Показать юриста
-      form.reset();
-      status.innerHTML = "✅ Спасибо! Вы можете выбрать юриста ниже.";
-      status.style.color = "green";
-
-      const lawyerBlock = document.getElementById("lawyer-block");
-      lawyerBlock.style.display = "block";
-      lawyerBlock.scrollIntoView({ behavior: "smooth" });
-    });
+    }
   </script>
 
 </body>
-
 </html>
