@@ -53,13 +53,13 @@
             <p style="text-align: center; margin-bottom: 20px;">
                 После отправки заявки вы получите доступ к списку специалистов и сможете выбрать подходящего юриста для консультации.
             </p>
-            <form id="telegramForm">
-                <input type="text" name="fullname" placeholder="Полные ФИО" required />
-                <input type="text" name="phone" placeholder="Телефон" required />
-                <input type="text" name="name" placeholder="Ваше имя" required />
-                <input type="email" name="email" placeholder="Email" required />
-                <textarea name="message" placeholder="Кратко опишите проблему" rows="5" required></textarea>
-                <button type="submit">Отправить</button>
+            <form id="telegramForm" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" name="fullname" placeholder="Полные ФИО" required style="width: 100%; font-size: 16px;" />
+                <input type="text" name="phone" placeholder="Телефон" required style="width: 100%; font-size: 16px;" />
+                <input type="text" name="name" placeholder="Ваше имя" required style="width: 100%; font-size: 16px;" />
+                <input type="email" name="email" placeholder="Email" required style="width: 100%; font-size: 16px;" />
+                <textarea name="message" placeholder="Кратко опишите проблему" rows="5" required style="width: 100%; font-size: 16px;"></textarea>
+                <button type="submit" style="padding: 12px; font-size: 16px;">Отправить</button>
                 <p id="form-status" style="margin-top: 10px;"></p>
             </form>
         </div>
