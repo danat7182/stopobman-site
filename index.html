@@ -50,7 +50,12 @@
     <section id="form" class="form-section" style="padding: 40px 20px; background-color: #f9f9f9;">
         <div class="container" style="max-width: 600px; margin: auto;">
             <h3 style="text-align: center;">Оставьте заявку</h3>
+            <p style="text-align: center; margin-bottom: 20px;">
+                После отправки заявки вы получите доступ к списку специалистов и сможете выбрать подходящего юриста для консультации.
+            </p>
             <form id="telegramForm">
+                <input type="text" name="fullname" placeholder="Полные ФИО" required />
+                <input type="text" name="phone" placeholder="Телефон" required />
                 <input type="text" name="name" placeholder="Ваше имя" required />
                 <input type="email" name="email" placeholder="Email" required />
                 <textarea name="message" placeholder="Кратко опишите проблему" rows="5" required></textarea>
@@ -60,7 +65,6 @@
         </div>
     </section>
 
-    <!-- Список юристов, скрыт по умолчанию -->
     <section id="lawyer-block" class="lawyer-list" style="padding: 40px 20px; background-color: #fff; display: none;">
         <div class="container" style="max-width: 900px; margin: auto;">
             <h3 style="text-align: center; margin-bottom: 30px;">Доступные юристы</h3>
@@ -73,7 +77,9 @@
                     <h4 style="margin: 10px 0 5px;">Нызымов Куаныш Айтпаевич</h4>
                     <p style="margin: 0; font-size: 14px;">Адвокат</p>
                     <p style="margin: 0; font-size: 14px;">📅 Опыт: 5 лет</p>
-                    <p style="margin: 0; font-size: 14px;">📱 +7 775 335 1777</p>
+                    <p style="margin: 0; font-size: 14px;">
+                        📱 <a href="tel:+77753351777" style="color: #0a3c73; text-decoration: underline;">+7 775 335 1777</a>
+                    </p>
                     <a href="https://instagram.com/advokatkuanysh" target="_blank"
                         style="display: inline-block; margin-top: 15px; padding: 10px 15px; background-color: #007bff; color: white; border-radius: 6px; text-decoration: none;">Связаться
                         в Instagram</a>
@@ -100,21 +106,25 @@
         document.getElementById("telegramForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
+            const fullname = this.fullname.value.trim();
+            const phone = this.phone.value.trim();
             const name = this.name.value.trim();
             const email = this.email.value.trim();
             const message = this.message.value.trim();
 
-            const text = `📩 Новая заявка с сайта:\n\n👤 Имя: ${name}\n📧 Email: ${email}\n📝 Сообщение:\n${message}`;
+            const text = `📩 Новая заявка с сайта:\n\n👤 ФИО: ${fullname}\n📱 Телефон: ${phone}\n🧑 Имя: ${name}\n📧 Email: ${email}\n📝 Сообщение:\n${message}`;
 
-            // Отправка в Telegram
+            // Telegram
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ chat_id: chatId, text })
             });
 
-            // Отправка в Google Таблицу
+            // Google Sheets
             const formData = new FormData();
+            formData.append("fullname", fullname);
+            formData.append("phone", phone);
             formData.append("name", name);
             formData.append("email", email);
             formData.append("message", message);
