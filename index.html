@@ -123,29 +123,33 @@
 
             const text = `📩 Новая заявка с сайта:\n\n👤 ФИО: ${fullname}\n📱 Телефон: ${phone}\n📧 Email: ${email}\n📝 Сообщение:\n${message}`;
 
-            // Telegram
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ chat_id: chatId, text })
-            });
-
-            // Google Sheets
             const formData = new FormData();
             formData.append("fullname", fullname);
             formData.append("phone", phone);
             formData.append("email", email);
             formData.append("message", message);
 
-            fetch(googleScriptURL, {
-                method: "POST",
-                body: formData
-            })
+            Promise.all([
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ chat_id: chatId, text })
+                }),
+                fetch(googleScriptURL, {
+                    method: "POST",
+                    body: formData
+                })
+            ])
                 .then(() => {
                     document.getElementById("form-status").innerHTML =
                         `<span style="color: green;">✅ Спасибо! Ваша заявка получена. Вы можете выбрать юриста из списка ниже.</span>`;
                     document.getElementById("telegramForm").reset();
-                    document.getElementById("lawyer-block").style.display = "block";
+
+                    const lawyerBlock = document.getElementById("lawyer-block");
+                    if (lawyerBlock) {
+                        lawyerBlock.style.display = "block";
+                        lawyerBlock.scrollIntoView({ behavior: "smooth" });
+                    }
                 })
                 .catch(() => {
                     document.getElementById("form-status").textContent = "Ошибка при отправке.";
