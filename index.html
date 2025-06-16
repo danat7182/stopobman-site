@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Горячая линия помощи пострадавшим от мошенников</title>
   <link rel="stylesheet" href="style.css" />
-  
-  <!-- Подключение маски ввода -->
+
+  <!-- Подключаем маску для телефона -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/bindings/inputmask.binding.min.js"></script>
 </head>
@@ -64,8 +63,7 @@
           <h4>Нызымов Куаныш Айтпаевич</h4>
           <p>Адвокат, опыт: 5 лет</p>
           <p><a href="tel:+77753351777">📞 +7 775 335 1777</a></p>
-          <a href="https://instagram.com/advokatkuanysh" target="_blank"
-            style="color: white; background: #007bff; padding: 8px 12px; border-radius: 6px; text-decoration: none;">Instagram</a>
+          <a href="https://instagram.com/advokatkuanysh" target="_blank" style="color: white; background: #007bff; padding: 8px 12px; border-radius: 6px; text-decoration: none;">Instagram</a>
         </div>
       </div>
     </div>
@@ -79,6 +77,7 @@
 
   <script>
     window.onload = function () {
+      // Применение маски
       Inputmask({ mask: "+7 (999) 999-99-99" }).mask(document.getElementById("phone"));
 
       const botToken = "8140689400:AAGTs2qY3sV-b86_EvhvFc1rczCucbCvKfA";
@@ -94,18 +93,19 @@
         const email = form.email.value.trim();
         const message = form.message.value.trim();
         const status = document.getElementById("form-status");
+        const lawyerBlock = document.getElementById("lawyer-block");
 
         const text = `📩 Новая заявка:\n👤 ${fullname}\n📞 ${phone}\n📧 ${email}\n📝 ${message}`;
 
         try {
-          // Telegram
+          // Отправка в Telegram
           await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ chat_id: chatId, text })
           });
 
-          // Google таблица
+          // Отправка в Google Таблицу
           const formData = new FormData();
           formData.append("fullname", fullname);
           formData.append("phone", phone);
@@ -117,21 +117,24 @@
             body: formData
           });
 
-          // Сообщение и показ юристов
+          // Сообщение пользователю
           status.innerHTML = "✅ Спасибо! Ваша заявка успешно отправлена. Теперь вы можете выбрать специалиста для консультации из списка ниже.";
           status.style.color = "green";
           form.reset();
 
-          const lawyerBlock = document.getElementById("lawyer-block");
-          lawyerBlock.style.display = "block";
-          lawyerBlock.scrollIntoView({ behavior: "smooth" });
+          // Показ юриста
+          if (lawyerBlock) {
+            lawyerBlock.style.display = "block";
+            lawyerBlock.scrollIntoView({ behavior: "smooth" });
+          }
 
         } catch (error) {
-          status.innerHTML = "❌ Ошибка при отправке. Попробуйте позже.";
+          console.error("Ошибка отправки:", error);
+          status.innerHTML = "❌ Произошла ошибка при отправке заявки. Попробуйте позже.";
           status.style.color = "red";
         }
       });
-    }
+    };
   </script>
 
 </body>
