@@ -18,8 +18,8 @@
             color: #0a3c73;
         }
 
-        .about p {
-            margin-bottom: 16px;
+        .about p,
+        .about ul {
             font-size: 16px;
             line-height: 1.6;
         }
@@ -27,11 +27,31 @@
         .about ul {
             list-style: none;
             padding-left: 0;
-            font-size: 16px;
         }
 
         .about ul li {
             margin-bottom: 10px;
+        }
+
+        .language-switcher {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .language-switcher button {
+            background-color: white;
+            color: #0a3c73;
+            border: 1px solid #0a3c73;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .language-switcher button:hover {
+            background-color: #0a3c73;
+            color: white;
         }
     </style>
 </head>
@@ -40,53 +60,108 @@
 
     <header class="header">
         <div class="container">
-            <h1>Горячая линия помощи</h1>
+            <h1 data-lang="ru">Горячая линия помощи</h1>
+            <h1 data-lang="kk" style="display:none;">Алаяқтардан зардап шеккендерге көмек</h1>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="about.html">О нас</a></li>
-                    <li><a href="services.html">Услуги</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="blog.html">Блог</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="index.html" data-lang="ru">Главная</a><a href="index.html" data-lang="kk"
+                            style="display:none;">Басты бет</a></li>
+                    <li><a href="about.html" data-lang="ru">О нас</a><a href="about.html" data-lang="kk"
+                            style="display:none;">Біз туралы</a></li>
+                    <li><a href="services.html" data-lang="ru">Услуги</a><a href="services.html" data-lang="kk"
+                            style="display:none;">Қызметтер</a></li>
+                    <li><a href="faq.html" data-lang="ru">FAQ</a><a href="faq.html" data-lang="kk"
+                            style="display:none;">Сұрақ-жауап</a></li>
+                    <li><a href="blog.html" data-lang="ru">Блог</a><a href="blog.html" data-lang="kk"
+                            style="display:none;">Блог</a></li>
+                    <li><a href="contacts.html" data-lang="ru">Контакты</a><a href="contacts.html" data-lang="kk"
+                            style="display:none;">Байланыс</a></li>
                 </ul>
             </nav>
+
+            <div class="language-switcher">
+                <button onclick="setLanguage('ru')">Рус</button>
+                <button onclick="setLanguage('kk')">Қаз</button>
+            </div>
         </div>
     </header>
 
     <section class="about">
         <div class="container" style="max-width: 900px; margin: auto;">
-            <h2>О нас</h2>
-            <p>
+            <h2 data-lang="ru">О нас</h2>
+            <h2 data-lang="kk" style="display:none;">Біз туралы</h2>
+
+            <p data-lang="ru">
                 Мы — онлайн-платформа, объединяющая проверенных юристов, адвокатов и специалистов. Наша цель — помочь
                 людям, пострадавшим от мошенничества, получить профессиональную поддержку, не теряя времени и нервов.
             </p>
-            <p>
+            <p data-lang="kk" style="display:none;">
+                Біз – онлайн платформа, сенімді заңгерлер мен мамандарды біріктіреміз. Біздің мақсат – алаяқтардан
+                зардап шеккендерге кәсіби көмек көрсету.
+            </p>
+
+            <p data-lang="ru">
                 Мы не оказываем юридические услуги напрямую. Все консультации и правовая помощь предоставляются
                 независимыми специалистами, с которыми вы самостоятельно заключаете соглашение.
             </p>
-            <p>
-                <strong>Мы работаем исключительно по территории Республики Казахстан.</strong>
+            <p data-lang="kk" style="display:none;">
+                Біз заңгерлік қызмет көрсетпейміз. Барлық кеңестерді тәуелсіз заңгерлер береді, және келісімді өзіңіз
+                жасайсыз.
             </p>
-            <p>Наша миссия — предоставить вам:</p>
+
+            <p data-lang="ru"><strong>Мы работаем исключительно по территории Республики Казахстан.</strong></p>
+            <p data-lang="kk" style="display:none;"><strong>Біз тек Қазақстан Республикасы аумағында жұмыс
+                    істейміз.</strong></p>
+
+            <p data-lang="ru">Наша миссия — предоставить вам:</p>
+            <p data-lang="kk" style="display:none;">Біздің миссиямыз – сізге көмектесу:</p>
+
             <ul style="line-height: 1.8;">
-                <li>✓ Подбор юриста под вашу ситуацию</li>
-                <li>✓ Бесплатные и платные консультации</li>
-                <li>✓ Помощь в составлении заявлений и обращений</li>
-                <li>✓ Анализ мошеннических схем и рекомендации</li>
+                <li data-lang="ru">✓ Подбор юриста под вашу ситуацию</li>
+                <li data-lang="kk" style="display:none;">✓ Сіздің жағдайыңызға сай заңгер табу</li>
+
+                <li data-lang="ru">✓ Бесплатные и платные консультации</li>
+                <li data-lang="kk" style="display:none;">✓ Тегін және ақылы кеңестер</li>
+
+                <li data-lang="ru">✓ Помощь в составлении заявлений и обращений</li>
+                <li data-lang="kk" style="display:none;">✓ Өтініштер мен арыздар дайындауға көмек</li>
+
+                <li data-lang="ru">✓ Анализ мошеннических схем и рекомендации</li>
+                <li data-lang="kk" style="display:none;">✓ Алаяқтық схемаларды талдау және кеңес беру</li>
             </ul>
-            <p>
+
+            <p data-lang="ru">
                 Мы действуем открыто, честно и без навязывания услуг. Всё, что мы делаем — направлено на вашу защиту.
                 Наша цель — вернуть вам контроль и спокойствие.
+            </p>
+            <p data-lang="kk" style="display:none;">
+                Біз ашық және адал жұмыс істейміз, ештеңе мәжбүрлемейміз. Біздің мақсат – сіздің құқығыңызды қорғау және
+                тыныштығыңызды қайтару.
             </p>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p data-lang="ru">&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p data-lang="kk" style="display:none;">&copy; 2025 Көмек желісі. Барлық құқықтар қорғалған.</p>
         </div>
     </footer>
+
+    <script>
+        function setLanguage(lang) {
+            const all = document.querySelectorAll('[data-lang]');
+            all.forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+            });
+            localStorage.setItem('site-lang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = localStorage.getItem('site-lang') || 'ru';
+            setLanguage(lang);
+        });
+    </script>
 
 </body>
 
