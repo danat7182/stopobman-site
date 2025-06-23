@@ -48,6 +48,27 @@
         .contact-form button:hover {
             background-color: #1258a8;
         }
+
+        .language-switcher {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .language-switcher button {
+            background-color: white;
+            color: #0a3c73;
+            border: 1px solid #0a3c73;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .language-switcher button:hover {
+            background-color: #0a3c73;
+            color: white;
+        }
     </style>
 </head>
 
@@ -55,45 +76,81 @@
 
     <header class="header">
         <div class="container">
-            <h1>Горячая линия помощи</h1>
+            <h1 data-lang="ru">Горячая линия помощи</h1>
+            <h1 data-lang="kk" style="display:none;">Алаяқтардан зардап шеккендерге көмек</h1>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="about.html">О нас</a></li>
-                    <li><a href="services.html">Услуги</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="blog.html">Блог</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="index.html" data-lang="ru">Главная</a><a href="index.html" data-lang="kk"
+                            style="display:none;">Басты бет</a></li>
+                    <li><a href="about.html" data-lang="ru">О нас</a><a href="about.html" data-lang="kk"
+                            style="display:none;">Біз туралы</a></li>
+                    <li><a href="services.html" data-lang="ru">Услуги</a><a href="services.html" data-lang="kk"
+                            style="display:none;">Қызметтер</a></li>
+                    <li><a href="faq.html" data-lang="ru">FAQ</a><a href="faq.html" data-lang="kk"
+                            style="display:none;">Сұрақ-жауап</a></li>
+                    <li><a href="blog.html" data-lang="ru">Блог</a><a href="blog.html" data-lang="kk"
+                            style="display:none;">Блог</a></li>
+                    <li><a href="contacts.html" data-lang="ru">Контакты</a><a href="contacts.html" data-lang="kk"
+                            style="display:none;">Байланыс</a></li>
                 </ul>
             </nav>
+
+            <div class="language-switcher">
+                <button onclick="setLanguage('ru')">Рус</button>
+                <button onclick="setLanguage('kk')">Қаз</button>
+            </div>
         </div>
     </header>
 
     <section class="contact-section">
         <div class="container contact-box">
-            <h2>Связь с техподдержкой</h2>
+            <h2 data-lang="ru">Связь с техподдержкой</h2>
+            <h2 data-lang="kk" style="display:none;">Техқолдау қызметімен байланыс</h2>
 
-            <p>Если у вас есть вопросы по работе платформы, трудности с формой заявки или другие технические моменты — напишите нам:</p>
+            <p data-lang="ru">Если у вас есть вопросы по работе платформы, трудности с формой заявки или другие
+                технические моменты — напишите нам:</p>
+            <p data-lang="kk" style="display:none;">Егер сізде платформа жұмысына қатысты сұрақтар немесе өтініш
+                формасымен қиындықтар болса — бізге жазыңыз:</p>
 
             <p><strong>Email:</strong> info@stopobman.com</p>
-            <p><strong>Поддержка работает онлайн по всему Казахстану</strong></p>
+            <p data-lang="ru"><strong>Поддержка работает онлайн по всему Казахстану</strong></p>
+            <p data-lang="kk" style="display:none;"><strong>Қолдау қызметі Қазақстан бойынша онлайн жұмыс
+                    істейді</strong></p>
 
-            <h3 style="margin-top: 30px;">Форма обратной связи</h3>
+            <h3 style="margin-top: 30px;" data-lang="ru">Форма обратной связи</h3>
+            <h3 style="margin-top: 30px; display:none;" data-lang="kk">Кері байланыс формасы</h3>
 
             <form class="contact-form" onsubmit="alert('Форма отправлена!'); return false;">
-                <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="text" name="name" placeholder="Ваше имя / Атыңыз" required>
                 <input type="email" name="email" placeholder="Ваш email" required>
-                <textarea name="message" rows="5" placeholder="Ваше сообщение" required></textarea>
-                <button type="submit">Отправить</button>
+                <textarea name="message" rows="5" placeholder="Ваше сообщение / Хабарламаңыз" required></textarea>
+                <button type="submit" data-lang="ru">Отправить</button>
+                <button type="submit" data-lang="kk" style="display:none;">Жіберу</button>
             </form>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p data-lang="ru">&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p data-lang="kk" style="display:none;">&copy; 2025 Көмек желісі. Барлық құқықтар қорғалған.</p>
         </div>
     </footer>
+
+    <script>
+        function setLanguage(lang) {
+            const all = document.querySelectorAll('[data-lang]');
+            all.forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+            });
+            localStorage.setItem('site-lang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = localStorage.getItem('site-lang') || 'ru';
+            setLanguage(lang);
+        });
+    </script>
 
 </body>
 
