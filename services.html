@@ -47,6 +47,27 @@
             margin-bottom: 0;
             text-align: left;
         }
+
+        .language-switcher {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .language-switcher button {
+            background-color: white;
+            color: #0a3c73;
+            border: 1px solid #0a3c73;
+            margin: 0 5px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .language-switcher button:hover {
+            background-color: #0a3c73;
+            color: white;
+        }
     </style>
 </head>
 
@@ -54,68 +75,121 @@
 
     <header class="header">
         <div class="container">
-            <h1>Горячая линия помощи</h1>
+            <h1 data-lang="ru">Горячая линия помощи</h1>
+            <h1 data-lang="kk" style="display:none;">Алаяқтардан зардап шеккендерге көмек</h1>
+
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="about.html">О нас</a></li>
-                    <li><a href="services.html">Услуги</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="blog.html">Блог</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="index.html" data-lang="ru">Главная</a><a href="index.html" data-lang="kk"
+                            style="display:none;">Басты бет</a></li>
+                    <li><a href="about.html" data-lang="ru">О нас</a><a href="about.html" data-lang="kk"
+                            style="display:none;">Біз туралы</a></li>
+                    <li><a href="services.html" data-lang="ru">Услуги</a><a href="services.html" data-lang="kk"
+                            style="display:none;">Қызметтер</a></li>
+                    <li><a href="faq.html" data-lang="ru">FAQ</a><a href="faq.html" data-lang="kk"
+                            style="display:none;">Сұрақ-жауап</a></li>
+                    <li><a href="blog.html" data-lang="ru">Блог</a><a href="blog.html" data-lang="kk"
+                            style="display:none;">Блог</a></li>
+                    <li><a href="contacts.html" data-lang="ru">Контакты</a><a href="contacts.html" data-lang="kk"
+                            style="display:none;">Байланыс</a></li>
                 </ul>
             </nav>
+
+            <div class="language-switcher">
+                <button onclick="setLanguage('ru')">Рус</button>
+                <button onclick="setLanguage('kk')">Қаз</button>
+            </div>
         </div>
     </header>
 
     <section class="services">
         <div class="services-container">
-            <h2>Наши услуги</h2>
+            <h2 data-lang="ru">Наши услуги</h2>
+            <h2 data-lang="kk" style="display:none;">Біздің қызметтер</h2>
 
-            <p class="intro">
+            <p class="intro" data-lang="ru">
                 <strong>Платформа StopObman — это не юридическая фирма.</strong> Мы объединяем независимых специалистов
                 и юристов, которые консультируют вас по вашей ситуации. Все услуги предоставляются только по
                 <strong>Казахстану</strong>.
             </p>
+            <p class="intro" data-lang="kk" style="display:none;">
+                <strong>StopObman платформасы — бұл заңгерлік компания емес.</strong> Біз сіздің мәселеңізді
+                қарастыратын тәуелсіз мамандар мен заңгерлерді біріктіреміз. Барлық қызметтер тек
+                <strong>Қазақстан</strong> бойынша ұсынылады.
+            </p>
 
             <div class="service-block">
-                <h3>1. Юридическая поддержка</h3>
-                <p>Юристы помогают подготовить официальные заявления, жалобы и иски. Консультируют по возврату средств,
-                    взаимодействуют с банками, правоохранительными органами и, при необходимости, сопровождают дело до
-                    суда.</p>
+                <h3 data-lang="ru">1. Юридическая поддержка</h3>
+                <h3 data-lang="kk" style="display:none;">1. Заңгерлік қолдау</h3>
+                <p data-lang="ru">Юристы помогают подготовить официальные заявления, жалобы и иски. Консультируют по
+                    возврату средств, взаимодействуют с банками, правоохранительными органами и, при необходимости,
+                    сопровождают дело до суда.</p>
+                <p data-lang="kk" style="display:none;">Заңгерлер ресми өтініштер, шағымдар және талап-арыздарды
+                    дайындауға көмектеседі. Ақшаны қайтару, банкпен және құқық қорғау органдарымен өзара іс-қимыл
+                    бойынша кеңес береді. Қажет болса — сотқа дейін алып барады.</p>
             </div>
 
             <div class="service-block">
-                <h3>2. Персональные консультации</h3>
-                <p>Вы можете получить консультацию — как бесплатную (чат/Telegram), так и платную (подробный разбор,
-                    подготовка документов, поддержка).</p>
+                <h3 data-lang="ru">2. Персональные консультации</h3>
+                <h3 data-lang="kk" style="display:none;">2. Жеке кеңестер</h3>
+                <p data-lang="ru">Вы можете получить консультацию — как бесплатную (чат/Telegram), так и платную
+                    (подробный разбор, подготовка документов, поддержка).</p>
+                <p data-lang="kk" style="display:none;">Сіз кеңесті тегін (чат / Telegram) немесе ақылы түрде
+                    (құжаттарды әзірлеу, жағдайды толық талдау, сүйемелдеу) ала аласыз.</p>
             </div>
 
             <div class="service-block">
-                <h3>3. Анализ схем мошенничества</h3>
-                <p>Если вы сомневаетесь, мошенничество это или нет — юристы проверят ситуацию, изучат переписку, ссылки,
-                    сайты. Вы получите рекомендации и понимание, что делать.</p>
+                <h3 data-lang="ru">3. Анализ схем мошенничества</h3>
+                <h3 data-lang="kk" style="display:none;">3. Алаяқтық схемаларды талдау</h3>
+                <p data-lang="ru">Если вы сомневаетесь, мошенничество это или нет — юристы проверят ситуацию, изучат
+                    переписку, ссылки, сайты. Вы получите рекомендации и понимание, что делать.</p>
+                <p data-lang="kk" style="display:none;">Егер сіз алдау ма, жоқ па деп күмәндансаңыз — заңгерлер жағдайды
+                    тексереді, хат алмасуды, сілтемелерді, сайттарды қарайды. Не істеу керектігін түсініп, ұсыныстар
+                    аласыз.</p>
             </div>
 
             <div class="service-block">
-                <h3>4. Поддержка в полиции</h3>
-                <p>Специалисты подскажут, как правильно подать заявление, чтобы его зарегистрировали и не отказали по
-                    формальным основаниям. Подготовим текст, документы и объяснения.</p>
+                <h3 data-lang="ru">4. Поддержка в полиции</h3>
+                <h3 data-lang="kk" style="display:none;">4. Полицияда қолдау</h3>
+                <p data-lang="ru">Специалисты подскажут, как правильно подать заявление, чтобы его зарегистрировали и не
+                    отказали по формальным основаниям. Подготовим текст, документы и объяснения.</p>
+                <p data-lang="kk" style="display:none;">Мамандар арызды дұрыс жазуға көмектеседі, осылайша оны тіркейді
+                    және формалды себептермен бас тартпайды. Біз мәтін мен құжаттарды дайындаймыз.</p>
             </div>
 
             <div class="service-block">
-                <h3>5. Обучение и профилактика</h3>
-                <p>Проводим профилактическую работу: пишем статьи, даём советы, как не попасться в будущем. Объясняем,
-                    как заранее распознать мошенников.</p>
+                <h3 data-lang="ru">5. Обучение и профилактика</h3>
+                <h3 data-lang="kk" style="display:none;">5. Алдын алу және түсіндіру</h3>
+                <p data-lang="ru">Проводим профилактическую работу: пишем статьи, даём советы, как не попасться в
+                    будущем. Объясняем, как заранее распознать мошенников.</p>
+                <p data-lang="kk" style="display:none;">Алдын алу жұмысын жүргіземіз: мақалалар жазамыз, кеңестер
+                    береміз, болашақта қалай алданып қалмау керек екенін түсіндіреміз.</p>
             </div>
+
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p data-lang="ru">&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p data-lang="kk" style="display:none;">&copy; 2025 Көмек желісі. Барлық құқықтар қорғалған.</p>
         </div>
     </footer>
+
+    <script>
+        function setLanguage(lang) {
+            const all = document.querySelectorAll('[data-lang]');
+            all.forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+            });
+            localStorage.setItem('site-lang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = localStorage.getItem('site-lang') || 'ru';
+            setLanguage(lang);
+        });
+    </script>
 
 </body>
 
