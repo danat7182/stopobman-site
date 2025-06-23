@@ -24,6 +24,27 @@
             text-decoration: underline;
             color: #1976d2;
         }
+
+        .language-switcher {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .language-switcher button {
+            background-color: white;
+            color: #0a3c73;
+            border: 1px solid #0a3c73;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .language-switcher button:hover {
+            background-color: #0a3c73;
+            color: white;
+        }
     </style>
 </head>
 
@@ -31,49 +52,74 @@
 
     <header class="header">
         <div class="container">
-            <h1>Горячая линия помощи</h1>
+            <h1 data-lang="ru">Горячая линия помощи</h1>
+            <h1 data-lang="kk" style="display:none;">Алаяқтардан зардап шеккендерге көмек</h1>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="about.html">О нас</a></li>
-                    <li><a href="services.html">Услуги</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="blog.html">Блог</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="index.html" data-lang="ru">Главная</a><a href="index.html" data-lang="kk"
+                            style="display:none;">Басты бет</a></li>
+                    <li><a href="about.html" data-lang="ru">О нас</a><a href="about.html" data-lang="kk"
+                            style="display:none;">Біз туралы</a></li>
+                    <li><a href="services.html" data-lang="ru">Услуги</a><a href="services.html" data-lang="kk"
+                            style="display:none;">Қызметтер</a></li>
+                    <li><a href="faq.html" data-lang="ru">FAQ</a><a href="faq.html" data-lang="kk"
+                            style="display:none;">Сұрақ-жауап</a></li>
+                    <li><a href="blog.html" data-lang="ru">Блог</a><a href="blog.html" data-lang="kk"
+                            style="display:none;">Блог</a></li>
+                    <li><a href="contacts.html" data-lang="ru">Контакты</a><a href="contacts.html" data-lang="kk"
+                            style="display:none;">Байланыс</a></li>
                 </ul>
             </nav>
+
+            <div class="language-switcher">
+                <button onclick="setLanguage('ru')">Рус</button>
+                <button onclick="setLanguage('kk')">Қаз</button>
+            </div>
         </div>
     </header>
 
     <section class="blog">
         <div class="container">
-            <h2>Полезные материалы и статьи</h2>
+            <h2 data-lang="ru">Полезные материалы и статьи</h2>
+            <h2 data-lang="kk" style="display:none;">Пайдалы мақалалар мен кеңестер</h2>
 
             <div class="blog-entry">
-                <h3>Как работают мошенники через Telegram</h3>
-                <p>Псевдоследователи, инвестиционные боты и подставные лица — вот что чаще всего используется. Разбираем
-                    схему и что делать, если попались.</p>
+                <h3 data-lang="ru">Как работают мошенники через Telegram</h3>
+                <h3 data-lang="kk" style="display:none;">Telegram арқылы алаяқтар қалай жұмыс істейді</h3>
+                <p data-lang="ru">Псевдоследователи, инвестиционные боты и подставные лица — вот что чаще всего
+                    используется. Разбираем схему и что делать, если попались.</p>
+                <p data-lang="kk" style="display:none;">Жалған жазылушылар, инвестициялық боттар және жалған аккаунттар
+                    — жиі қолданылатын тәсілдер. Егер алдансаңыз — не істеу керек, соны түсіндіреміз.</p>
                 <a href="#">Читать подробнее</a>
             </div>
 
             <div class="blog-entry">
-                <h3>Как подать заявление в полицию правильно</h3>
-                <p>Простой пошаговый алгоритм подачи заявления в Республике Казахстан, с примерами текстов и пояснениями, как
-                    добиться регистрации и рассмотрения.</p>
+                <h3 data-lang="ru">Как подать заявление в полицию правильно</h3>
+                <h3 data-lang="kk" style="display:none;">Полицияға арызды дұрыс қалай жазу керек</h3>
+                <p data-lang="ru">Простой пошаговый алгоритм подачи заявления в Республике Казахстан, с примерами
+                    текстов и пояснениями, как добиться регистрации и рассмотрения.</p>
+                <p data-lang="kk" style="display:none;">Қазақстан Республикасында полицияға арызды қалай дұрыс беру
+                    керек — қарапайым қадамдар, мәтін үлгілері және тіркеуге қол жеткізу жолы.</p>
                 <a href="#">Читать подробнее</a>
             </div>
 
             <div class="blog-entry">
-                <h3>Как узнать, вернут ли вам деньги</h3>
-                <p>Какие случаи имеют шансы на возврат, что зависит от платёжного метода и как правильно реагировать в
-                    первые часы после перевода.</p>
+                <h3 data-lang="ru">Как узнать, вернут ли вам деньги</h3>
+                <h3 data-lang="kk" style="display:none;">Ақшаңызды қайтаруға бола ма — қалай білуге болады</h3>
+                <p data-lang="ru">Какие случаи имеют шансы на возврат, что зависит от платёжного метода и как правильно
+                    реагировать в первые часы после перевода.</p>
+                <p data-lang="kk" style="display:none;">Қандай жағдайларда ақшаны қайтаруға мүмкіндік бар, төлем әдісіне
+                    не байланысты және алғашқы сағаттарда не істеу керек.</p>
                 <a href="#">Читать подробнее</a>
             </div>
 
             <div class="blog-entry">
-                <h3>Почему даже умные люди попадаются</h3>
-                <p>Психология мошенничества и как работает манипуляция. Почему жертвами становятся даже образованные и
-                    осторожные.</p>
+                <h3 data-lang="ru">Почему даже умные люди попадаются</h3>
+                <h3 data-lang="kk" style="display:none;">Неліктен тіпті ақылды адамдар алданып қалады</h3>
+                <p data-lang="ru">Психология мошенничества и как работает манипуляция. Почему жертвами становятся даже
+                    образованные и осторожные.</p>
+                <p data-lang="kk" style="display:none;">Алаяқтықтың психологиясы және манипуляция қалай жұмыс істейді.
+                    Неліктен білімді және сақ адамдар да құрбан болады.</p>
                 <a href="#">Читать подробнее</a>
             </div>
 
@@ -82,9 +128,25 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p data-lang="ru">&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p data-lang="kk" style="display:none;">&copy; 2025 Көмек желісі. Барлық құқықтар қорғалған.</p>
         </div>
     </footer>
+
+    <script>
+        function setLanguage(lang) {
+            const all = document.querySelectorAll('[data-lang]');
+            all.forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+            });
+            localStorage.setItem('site-lang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = localStorage.getItem('site-lang') || 'ru';
+            setLanguage(lang);
+        });
+    </script>
 
 </body>
 
