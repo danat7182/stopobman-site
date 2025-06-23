@@ -43,6 +43,29 @@ body {
     text-decoration: underline;
 }
 
+/* Переключатель языков */
+.language-switcher {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.language-switcher button {
+    background-color: white;
+    color: #0a3c73;
+    border: 1px solid #0a3c73;
+    padding: 6px 12px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.language-switcher button:hover {
+    background-color: #0a3c73;
+    color: white;
+}
+
 /* Герой-секция */
 .hero {
     background-image: url("femida-background.jpg");
@@ -87,6 +110,7 @@ body {
     color: white;
     text-decoration: none;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .btn:hover {
@@ -131,7 +155,8 @@ body {
     margin-bottom: 20px;
 }
 
-input, textarea {
+input,
+textarea {
     width: 100%;
     font-size: 16px;
     padding: 12px;
@@ -182,7 +207,7 @@ button[type="submit"]:hover {
     gap: 20px;
 }
 
-.lawyer-list .container > div {
+.lawyer-list .container>div {
     width: 280px;
     border: 1px solid #ddd;
     border-radius: 12px;
@@ -218,4 +243,3 @@ button[type="submit"]:hover {
     padding: 20px 0;
     font-size: 14px;
 }
-
