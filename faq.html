@@ -37,6 +37,27 @@
             font-size: 15px;
             line-height: 1.6;
         }
+
+        .language-switcher {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .language-switcher button {
+            background-color: white;
+            color: #0a3c73;
+            border: 1px solid #0a3c73;
+            margin: 0 5px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .language-switcher button:hover {
+            background-color: #0a3c73;
+            color: white;
+        }
     </style>
 </head>
 
@@ -44,64 +65,120 @@
 
     <header class="header">
         <div class="container">
-            <h1>Горячая линия помощи</h1>
+            <h1 data-lang="ru">Горячая линия помощи</h1>
+            <h1 data-lang="kk" style="display:none;">Алаяқтардан зардап шеккендерге көмек</h1>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="about.html">О нас</a></li>
-                    <li><a href="services.html">Услуги</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="blog.html">Блог</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="index.html" data-lang="ru">Главная</a><a href="index.html" data-lang="kk"
+                            style="display:none;">Басты бет</a></li>
+                    <li><a href="about.html" data-lang="ru">О нас</a><a href="about.html" data-lang="kk"
+                            style="display:none;">Біз туралы</a></li>
+                    <li><a href="services.html" data-lang="ru">Услуги</a><a href="services.html" data-lang="kk"
+                            style="display:none;">Қызметтер</a></li>
+                    <li><a href="faq.html" data-lang="ru">FAQ</a><a href="faq.html" data-lang="kk"
+                            style="display:none;">Сұрақ-жауап</a></li>
+                    <li><a href="blog.html" data-lang="ru">Блог</a><a href="blog.html" data-lang="kk"
+                            style="display:none;">Блог</a></li>
+                    <li><a href="contacts.html" data-lang="ru">Контакты</a><a href="contacts.html" data-lang="kk"
+                            style="display:none;">Байланыс</a></li>
                 </ul>
             </nav>
+
+            <div class="language-switcher">
+                <button onclick="setLanguage('ru')">Рус</button>
+                <button onclick="setLanguage('kk')">Қаз</button>
+            </div>
         </div>
     </header>
 
     <section class="faq-container">
-        <h2>Вопросы о платформе и условиях помощи</h2>
+        <h2 data-lang="ru">Вопросы о платформе и условиях помощи</h2>
+        <h2 data-lang="kk" style="display:none;">Платформа мен көмек шарттары туралы сұрақтар</h2>
 
+        <!-- Вопрос 1 -->
         <div class="faq-item">
-            <h4>Я перевёл деньги мошенникам. Что делать?</h4>
-            <p>Немедленно зафиксируйте переписку, чеки, реквизиты и обратитесь в банк и полицию. Мы поможем составить
-                заявление и подскажем, как действовать правильно.</p>
+            <h4 data-lang="ru">Я перевёл деньги мошенникам. Что делать?</h4>
+            <h4 data-lang="kk" style="display:none;">Мен алаяқтарға ақша аудардым. Не істеу керек?</h4>
+            <p data-lang="ru">Немедленно зафиксируйте переписку, чеки, реквизиты и обратитесь в банк и полицию. Мы
+                поможем составить заявление и подскажем, как действовать правильно.</p>
+            <p data-lang="kk" style="display:none;">Хат-хабарларды, түбіртектерді, шоттарды сақтап қойып, банкке және
+                полицияға жүгініңіз. Біз арыз жазуға көмектесеміз және не істеу керектігін түсіндіреміз.</p>
         </div>
 
+        <!-- Вопрос 2 -->
         <div class="faq-item">
-            <h4>Вы действительно можете вернуть деньги?</h4>
-            <p>Мы не обещаем 100% возврат — но делаем всё возможное: юридические меры, сопровождение, медиация, направление жалоб в техподдержку сайтов, онлайн-магазинов и платёжных сервисов. <b>Как правило, это даёт результат.</b></p>
+            <h4 data-lang="ru">Вы действительно можете вернуть деньги?</h4>
+            <h4 data-lang="kk" style="display:none;">Сіздер ақшаны қайтарып бере аласыздар ма?</h4>
+            <p data-lang="ru">Мы не обещаем 100% возврат — но делаем всё возможное: юридические меры, сопровождение,
+                медиация, направление жалоб в техподдержку сайтов, онлайн-магазинов и платёжных сервисов. <b>Как
+                    правило, это даёт результат.</b></p>
+            <p data-lang="kk" style="display:none;">Біз 100% қайтарымға кепілдік бермейміз, бірақ қолдан келгеннің бәрін
+                жасаймыз: заңгерлік шаралар, сүйемелдеу, медиация, сайттарға және төлем жүйелеріне шағымдар жазу. <b>Көп
+                    жағдайда нәтиже болады.</b></p>
         </div>
 
+        <!-- Вопрос 3 -->
         <div class="faq-item">
-            <h4>Сколько стоит ваша помощь?</h4>
-            <p>Каждая ситуация индивидуальна. Первичная консультация — <b>бесплатна</b>. Стоимость дальнейшей помощи
-                устанавливается специалистом в зависимости от сложности дела.</p>
+            <h4 data-lang="ru">Сколько стоит ваша помощь?</h4>
+            <h4 data-lang="kk" style="display:none;">Көмектеріңіз қанша тұрады?</h4>
+            <p data-lang="ru">Каждая ситуация индивидуальна. Первичная консультация — <b>бесплатна</b>. Стоимость
+                дальнейшей помощи устанавливается специалистом в зависимости от сложности дела.</p>
+            <p data-lang="kk" style="display:none;">Әр жағдай жеке қаралады. Алғашқы кеңес — <b>тегін</b>. Одан арғы
+                көмектің бағасын маман істің күрделілігіне қарай белгілейді.</p>
         </div>
 
+        <!-- Вопрос 4 -->
         <div class="faq-item">
-            <h4>Вы работаете только по Казахстану?</h4>
-            <p>Да. Мы работаем <b>исключительно по Республике Казахстан</b>. В будущем планируем расширение на страны
-                СНГ.</p>
+            <h4 data-lang="ru">Вы работаете только по Казахстану?</h4>
+            <h4 data-lang="kk" style="display:none;">Сіздер тек Қазақстан бойынша жұмыс істейсіздер ме?</h4>
+            <p data-lang="ru">Да. Мы работаем <b>исключительно по Республике Казахстан</b>. В будущем планируем
+                расширение на страны СНГ.</p>
+            <p data-lang="kk" style="display:none;">Иә. Біз <b>тек Қазақстан Республикасы</b> бойынша жұмыс істейміз.
+                Болашақта ТМД елдеріне кеңею жоспарымызда бар.</p>
         </div>
 
+        <!-- Вопрос 5 -->
         <div class="faq-item">
-            <h4>Вы сами оказываете юридическую помощь?</h4>
-            <p>Нет. Мы — <b>онлайн-платформа</b>, которая объединяет независимых юристов. Вы сами выбираете специалиста
-                после подачи заявки.</p>
+            <h4 data-lang="ru">Вы сами оказываете юридическую помощь?</h4>
+            <h4 data-lang="kk" style="display:none;">Сіздер өздеріңіз заңгерлік көмек көрсетесіздер ме?</h4>
+            <p data-lang="ru">Нет. Мы — <b>онлайн-платформа</b>, которая объединяет независимых юристов. Вы сами
+                выбираете специалиста после подачи заявки.</p>
+            <p data-lang="kk" style="display:none;">Жоқ. Біз — <b>онлайн-платформа</b>, тәуелсіз заңгерлерді
+                біріктіреміз. Сіз өзіңізге қажетті маманды өзіңіз таңдайсыз.</p>
         </div>
 
+        <!-- Вопрос 6 -->
         <div class="faq-item">
-            <h4>Это анонимно?</h4>
-            <p>Да. Мы не публикуем и не передаём ваши данные третьим лицам без согласия. Конфиденциальность — наша
-                основа.</p>
+            <h4 data-lang="ru">Это анонимно?</h4>
+            <h4 data-lang="kk" style="display:none;">Бұл анонимді түрде жүргізіле ме?</h4>
+            <p data-lang="ru">Да. Мы не публикуем и не передаём ваши данные третьим лицам без согласия.
+                Конфиденциальность — наша основа.</p>
+            <p data-lang="kk" style="display:none;">Иә. Біз сіздің деректеріңізді жарияламаймыз және үшінші тұлғаларға
+                бермейміз. Құпиялық — біздің басты қағидамыз.</p>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p data-lang="ru">&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p data-lang="kk" style="display:none;">&copy; 2025 Көмек желісі. Барлық құқықтар қорғалған.</p>
         </div>
     </footer>
+
+    <script>
+        function setLanguage(lang) {
+            const all = document.querySelectorAll('[data-lang]');
+            all.forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+            });
+            localStorage.setItem('site-lang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = localStorage.getItem('site-lang') || 'ru';
+            setLanguage(lang);
+        });
+    </script>
 
 </body>
 
