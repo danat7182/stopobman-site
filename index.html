@@ -2,144 +2,235 @@
 <html lang="ru">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Горячая линия помощи пострадавшим от мошенников</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Горячая линия помощи пострадавшим от мошенников</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <header class="header">
-    <div class="container">
-      <h1>Горячая линия помощи</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="about.html">О нас</a></li>
-          <li><a href="services.html">Услуги</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="blog.html">Блог</a></li>
-          <li><a href="contacts.html">Контакты</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="overlay">
-      <div class="hero-content">
-        <h2>Вы стали жертвой мошенников?</h2>
-        <p>Наша команда поможет вам: юридическая поддержка, консультации, анализ схем.</p>
-        <a href="#form" class="btn">Оставить заявку</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="services">
-    <div class="container">
-      <h3>Наши ключевые услуги</h3>
-      <ul>
-        <li>✓ Юридическая поддержка</li>
-        <li>✓ Консультации по возврату средств</li>
-        <li>✓ Анализ мошеннических схем</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="form" class="form-section" style="padding: 40px 20px; background-color: #f9f9f9;">
-    <div class="container" style="max-width: 600px; margin: auto;">
-      <h3 style="text-align: center;">Оставьте заявку</h3>
-      <p style="text-align: center; margin-bottom: 20px;">
-        После отправки заявки вы получите доступ к списку специалистов и сможете выбрать подходящего юриста для консультации.
-      </p>
-      <form id="telegramForm" style="display: flex; flex-direction: column; gap: 15px;">
-        <input type="text" name="fullname" placeholder="Полные ФИО" required style="width: 100%; font-size: 16px;" />
-        <input type="text" name="phone" placeholder="Телефон" required style="width: 100%; font-size: 16px;" />
-        <input type="email" name="email" placeholder="Email" required style="width: 100%; font-size: 16px;" />
-        <textarea name="message" placeholder="Кратко опишите проблему" rows="5" required style="width: 100%; font-size: 16px;"></textarea>
-        <button type="submit" style="padding: 12px; font-size: 16px;">Отправить</button>
-        <p id="form-status" style="margin-top: 10px;"></p>
-      </form>
-    </div>
-  </section>
-
-  <section id="lawyer-block" class="lawyer-list" style="padding: 40px 20px; background-color: #fff; display: none;">
-    <div class="container" style="max-width: 900px; margin: auto;">
-      <h3 style="text-align: center; margin-bottom: 30px;">Доступные юристы</h3>
-      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-        <div style="width: 280px; border: 1px solid #ddd; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
-          <img src="https://via.placeholder.com/150" alt="Адвокат Куаныш"
-            style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;">
-          <h4 style="margin: 10px 0 5px;">Нызымов Куаныш Айтпаевич</h4>
-          <p style="margin: 0; font-size: 14px;">Адвокат</p>
-          <p style="margin: 0; font-size: 14px;">📅 Опыт: 5 лет</p>
-          <p style="margin: 0; font-size: 14px;">
-            📱 <a href="tel:+77753351777" style="color: #0a3c73; text-decoration: underline;">+7 775 335 1777</a>
-          </p>
-          <a href="https://instagram.com/advokatkuanysh" target="_blank"
-            style="display: inline-block; margin-top: 15px; padding: 10px 15px; background-color: #007bff; color: white; border-radius: 6px; text-decoration: none;">Связаться в Instagram</a>
+    <header class="header">
+        <div class="container">
+            <h1 data-lang="ru">Горячая линия помощи</h1>
+            <h1 data-lang="kk" style="display:none;">Алаяқтардан зардап шеккендерге көмек</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" data-lang="ru">Главная</a><a href="index.html" data-lang="kk"
+                            style="display:none;">Басты бет</a></li>
+                    <li><a href="about.html" data-lang="ru">О нас</a><a href="about.html" data-lang="kk"
+                            style="display:none;">Біз туралы</a></li>
+                    <li><a href="services.html" data-lang="ru">Услуги</a><a href="services.html" data-lang="kk"
+                            style="display:none;">Қызметтер</a></li>
+                    <li><a href="faq.html" data-lang="ru">FAQ</a><a href="faq.html" data-lang="kk"
+                            style="display:none;">Сұрақ-жауап</a></li>
+                    <li><a href="blog.html" data-lang="ru">Блог</a><a href="blog.html" data-lang="kk"
+                            style="display:none;">Блог</a></li>
+                    <li><a href="contacts.html" data-lang="ru">Контакты</a><a href="contacts.html" data-lang="kk"
+                            style="display:none;">Байланыс</a></li>
+                </ul>
+            </nav>
+            <div class="language-switcher">
+                <button onclick="setLanguage('ru')">Рус</button>
+                <button onclick="setLanguage('kk')">Қаз</button>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2025 Горячая линия помощи. Все права защищены.</p>
-      <p style="font-size: 12px; margin-top: 10px;">
-        Платформа stopobman.com не оказывает юридические услуги. Все консультации предоставляются независимыми специалистами. Мы не несем ответственности за результат взаимодействия между клиентом и исполнителем.
-      </p>
-    </div>
-  </footer>
+    <section class="hero">
+        <div class="overlay">
+            <div class="hero-content">
+                <h2 data-lang="ru">Вы стали жертвой мошенников?</h2>
+                <h2 data-lang="kk" style="display:none;">Сіз алаяқтардың құрбаны болдыңыз ба?</h2>
+                <p data-lang="ru">Наша команда поможет вам: юридическая поддержка, консультации, анализ схем.</p>
+                <p data-lang="kk" style="display:none;">Біздің команда көмектеседі: заңгерлік көмек, кеңес беру,
+                    схемаларды талдау.</p>
+                <a href="#form" class="btn" data-lang="ru">Оставить заявку</a>
+                <a href="#form" class="btn" data-lang="kk" style="display:none;">Өтініш қалдыру</a>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    const botToken = "8140689400:AAGTs2qY3sV-b86_EvhvFc1rczCucbCvKfA";
-    const chatId = "536410466";
-    const googleScriptURL = "https://script.google.com/macros/s/AKfycbwwofTgTzGcZADgYlDk5pCdLXOwfaoA5SFHrsgIhJoyIz2hTLdpaYJVi0U4RcOUt0-F/exec";
+    <section class="services">
+        <div class="container">
+            <h3 data-lang="ru">Наши ключевые услуги</h3>
+            <h3 data-lang="kk" style="display:none;">Басты қызметтеріміз</h3>
+            <ul>
+                <li data-lang="ru">✓ Юридическая поддержка</li>
+                <li data-lang="kk" style="display:none;">✓ Заңгерлік көмек</li>
+                <li data-lang="ru">✓ Консультации по возврату средств</li>
+                <li data-lang="kk" style="display:none;">✓ Ақшаны қайтару бойынша кеңес</li>
+                <li data-lang="ru">✓ Анализ мошеннических схем</li>
+                <li data-lang="kk" style="display:none;">✓ Алаяқтық схемаларды талдау</li>
+            </ul>
+        </div>
+    </section>
 
-    document.getElementById("telegramForm").addEventListener("submit", function (e) {
-      e.preventDefault();
+    <section id="form" class="form-section" style="padding: 40px 20px; background-color: #f9f9f9;">
+        <div class="container" style="max-width: 600px; margin: auto;">
+            <h3 style="text-align: center;" data-lang="ru">Оставьте заявку</h3>
+            <h3 style="text-align: center; display:none;" data-lang="kk">Өтініш қалдырыңыз</h3>
+            <p style="text-align: center; margin-bottom: 20px;" data-lang="ru">
+                После отправки заявки вы получите доступ к списку специалистов и сможете выбрать подходящего юриста для
+                консультации.
+            </p>
+            <p style="text-align: center; margin-bottom: 20px; display:none;" data-lang="kk">
+                Өтініш жіберілген соң сізге заңгерлер тізімі ашылады. Сіз өзіңізге қолайлы маманды таңдай аласыз.
+            </p>
+            <form id="telegramForm" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" name="fullname" placeholder="ФИО / Аты-жөні" required />
+                <input type="text" name="phone" placeholder="Телефон" required />
+                <input type="email" name="email" placeholder="Email" required />
+                <textarea name="message" placeholder="Кратко опишите проблему / Мәселені сипаттаңыз" rows="5"
+                    required></textarea>
+                <button type="submit" data-lang="ru">Отправить</button>
+                <button type="submit" data-lang="kk" style="display:none;">Жіберу</button>
+                <p id="form-status"></p>
+            </form>
+        </div>
+    </section>
 
-      const form = e.target;
-      const fullname = form.querySelector('input[name="fullname"]').value.trim();
-      const phone = form.querySelector('input[name="phone"]').value.trim();
-      const email = form.querySelector('input[name="email"]').value.trim();
-      const message = form.querySelector('textarea[name="message"]').value.trim();
+    <section id="lawyer-block" class="lawyer-list" style="padding: 40px 20px; background-color: #fff; display: none;">
+        <div class="container" style="max-width: 900px; margin: auto;">
+            <h3 style="text-align: center; margin-bottom: 30px;">Доступные юристы</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
 
-      const text = `📩 Новая заявка с сайта:\n\n👤 ФИО: ${fullname}\n📱 Телефон: ${phone}\n📧 Email: ${email}\n📝 Сообщение:\n${message}`;
+                <!-- Куаныш -->
+                <div
+                    style="width: 280px; border: 1px solid #ddd; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+                    <img src="https://via.placeholder.com/150" alt="Адвокат Куаныш"
+                        style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;">
+                    <h4 style="margin: 10px 0 5px;">Нызымов Куаныш Айтпаевич</h4>
+                    <p>Адвокат, 5 лет</p>
+                    <p>📱 <a href="tel:+77753351777" style="color: #0a3c73;">+7 775 335 1777</a></p>
+                    <a href="https://instagram.com/advokatkuanysh" target="_blank" class="btn">Instagram</a>
+                </div>
 
-      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text })
-      });
+                <!-- Мусабеков -->
+                <div
+                    style="width: 280px; border: 1px solid #ddd; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+                    <img src="https://via.placeholder.com/150" alt="Мусабеков Еркебулан"
+                        style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;">
+                    <h4 style="margin: 10px 0 5px;">Мусабеков Еркебулан Газизович</h4>
+                    <p>Адвокат, 17 лет</p>
+                    <p>📱 <a href="tel:+77019896797" style="color: #0a3c73;">+7 701 989 6797</a></p>
+                    <a href="https://instagram.com/mussabekov_erke_advocat_ekb" target="_blank"
+                        class="btn">Instagram</a>
+                </div>
 
-      const formData = new FormData();
-      formData.append("fullname", fullname);
-      formData.append("phone", phone);
-      formData.append("email", email);
-      formData.append("message", message);
+                <!-- Сейтжан -->
+                <div
+                    style="width: 280px; border: 1px solid #ddd; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+                    <img src="https://via.placeholder.com/150" alt="Сейтжан Ардак"
+                        style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;">
+                    <h4 style="margin: 10px 0 5px;">Сейтжан Ардак Русланулы</h4>
+                    <p>Адвокат, 16 лет</p>
+                    <p>📱 <a href="tel:+77783988908" style="color: #0a3c73;">+7 778 398 8908</a></p>
+                    <a href="https://instagram.com/ardak_seitzhan" target="_blank" class="btn">Instagram</a>
+                </div>
 
-      fetch(googleScriptURL, {
-        method: "POST",
-        body: formData
-      })
-      .then(() => {
-        document.getElementById("form-status").innerHTML =
-          `<span style="color: green;">✅ Спасибо! Ваша заявка получена. Вы можете выбрать юриста из списка ниже.</span>`;
-        document.getElementById("telegramForm").reset();
+                <!-- Рамазанов -->
+                <div
+                    style="width: 280px; border: 1px solid #ddd; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+                    <img src="https://via.placeholder.com/150" alt="Рамазанов Ернур"
+                        style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;">
+                    <h4 style="margin: 10px 0 5px;">Рамазанов Ернур Болатбекович</h4>
+                    <p>Адвокат, 12 лет</p>
+                    <p>📱 <a href="tel:+77766670007" style="color: #0a3c73;">+7 776 667 0007</a></p>
+                    <a href="https://instagram.com/advokat.ernur_ramazanov" target="_blank" class="btn">Instagram</a>
+                </div>
 
-        const lawyerBlock = document.getElementById("lawyer-block");
-        lawyerBlock.style.display = "block";
-        lawyerBlock.scrollIntoView({ behavior: "smooth" });
-      })
-      .catch(() => {
-        document.getElementById("form-status").textContent = "Ошибка при отправке.";
-        document.getElementById("form-status").style.color = "red";
-      });
-    });
-  </script>
+                <!-- Исаев -->
+                <div
+                    style="width: 280px; border: 1px solid #ddd; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+                    <img src="https://via.placeholder.com/150" alt="Исаев Айдос"
+                        style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px;">
+                    <h4 style="margin: 10px 0 5px;">Исаев Айдос Ермекович</h4>
+                    <p>Адвокат, более 20 лет</p>
+                    <p>📱 <a href="tel:+77014056660" style="color: #0a3c73;">+7 701 405 6660</a></p>
+                    <!-- Без Instagram -->
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p data-lang="ru">&copy; 2025 Горячая линия помощи. Все права защищены.</p>
+            <p data-lang="kk" style="display:none;">&copy; 2025 Көмек желісі. Барлық құқықтар қорғалған.</p>
+            <p style="font-size: 12px; margin-top: 10px;" data-lang="ru">
+                Платформа stopobman.com не оказывает юридические услуги. Все консультации предоставляются независимыми
+                специалистами.
+            </p>
+            <p style="font-size: 12px; margin-top: 10px; display:none;" data-lang="kk">
+                Stopobman.com платформасы заңгерлік қызметтер көрсетпейді. Барлық кеңес тәуелсіз мамандар тарапынан
+                беріледі.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function setLanguage(lang) {
+            const allElements = document.querySelectorAll('[data-lang]');
+            allElements.forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+            });
+            localStorage.setItem('site-lang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = localStorage.getItem('site-lang') || 'ru';
+            setLanguage(lang);
+        });
+
+        const botToken = "8140689400:AAGTs2qY3sV-b86_EvhvFc1rczCucbCvKfA";
+        const chatId = "536410466";
+        const googleScriptURL = "https://script.google.com/macros/s/AKfycbwwofTgTzGcZADgYlDk5pCdLXOwfaoA5SFHrsgIhJoyIz2hTLdpaYJVi0U4RcOUt0-F/exec";
+
+        document.getElementById("telegramForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const fullname = form.querySelector('input[name="fullname"]').value.trim();
+            const phone = form.querySelector('input[name="phone"]').value.trim();
+            const email = form.querySelector('input[name="email"]').value.trim();
+            const message = form.querySelector('textarea[name="message"]').value.trim();
+
+            const text = `📩 Новая заявка с сайта:\n\n👤 ФИО: ${fullname}\n📱 Телефон: ${phone}\n📧 Email: ${email}\n📝 Сообщение:\n${message}`;
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ chat_id: chatId, text })
+            });
+
+            const formData = new FormData();
+            formData.append("fullname", fullname);
+            formData.append("phone", phone);
+            formData.append("email", email);
+            formData.append("message", message);
+
+            fetch(googleScriptURL, {
+                method: "POST",
+                body: formData
+            })
+                .then(() => {
+                    document.getElementById("form-status").innerHTML =
+                        `<span style="color: green;">✅ Спасибо! Ваша заявка получена. Вы можете выбрать юриста из списка ниже.</span>`;
+                    document.getElementById("telegramForm").reset();
+
+                    const lawyerBlock = document.getElementById("lawyer-block");
+                    lawyerBlock.style.display = "block";
+                    lawyerBlock.scrollIntoView({ behavior: "smooth" });
+                })
+                .catch(() => {
+                    document.getElementById("form-status").textContent = "Ошибка при отправке.";
+                    document.getElementById("form-status").style.color = "red";
+                });
+        });
+    </script>
 
 </body>
+
 </html>
