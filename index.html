@@ -289,10 +289,8 @@ const text = `📩 Новая заявка с сайта:\n\n👤 Имя: ${full
       });
       
 const formData = new FormData();
-      formData.append("fullname", fullname);
-      formData.append("phone", phone);
-      formData.append("email", email);
-      formData.append("message", message);      
+formData.append("fullname", fullname);
+formData.append("message", message); 
 
       fetch(googleScriptURL, {
         method: "POST",
