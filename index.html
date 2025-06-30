@@ -271,60 +271,65 @@
     });
 
    <script>
-  function setLanguage(lang) {
-    const allElements = document.querySelectorAll('[data-lang]');
-    allElements.forEach(el => {
-      el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
-    });
-    localStorage.setItem('site-lang', lang);
-  }
+        function setLanguage(lang) {
+            const allElements = document.querySelectorAll('[data-lang]');
+            allElements.forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+            });
+            localStorage.setItem('site-lang', lang);
+        }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const lang = localStorage.getItem("site-lang") || "ru";
-    setLanguage(lang);
-
-    const botToken = "8140689400:AAGTs2qY3sV-b86_EvhvFc1rczCucbCvKfA";
-    const chatId = "536410466";
-    const googleScriptURL = "https://script.google.com/macros/s/AKfycbwwofTgTzGcZADgY1DkSpCdLXOwfaOaSSFHrsGh1ohyZznIHOpd7Vl0LRAkC0Ut0-F/exec";
-
-    document.getElementById("telegramForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const form = e.target;
-      const fullname = form.querySelector('input[name="fullname"]').value.trim();
-      const message = form.querySelector('textarea[name="message"]').value.trim();
-
-      const text = `📩 Новая заявка с сайта:\n\n👤 Имя: ${fullname}\n📝 Сообщение:\n${message}`;
-
-      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text })
-      });
-
-      const formData = new FormData();
-      formData.append("fullname", fullname);
-      formData.append("message", message);
-
-      fetch(googleScriptURL, {
-        method: "POST",
-        body: formData
-      })
-        .then(() => {
-          document.getElementById("form-status").innerHTML =
-            `<span style="color: green;">✅ Спасибо! Ваша заявка получена. Вы можете выбрать юриста из списка ниже.</span>`;
-          document.getElementById("telegramForm").reset();
-          const lawyerBlock = document.getElementById("lawyer-block");
-          lawyerBlock.style.display = "block";
-          lawyerBlock.scrollIntoView({ behavior: "smooth" });
-        })
-        .catch(() => {
-          document.getElementById("form-status").textContent = "Ошибка при отправке.";
-          document.getElementById("form-status").style.color = "red";
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = localStorage.getItem('site-lang') || 'ru';
+            setLanguage(lang);
         });
-    });
-  });
-</script>
+
+        const botToken = "8140689400:AAGTs2qY3sV-b86_EvhvFc1rczCucbCvKfA";
+        const chatId = "536410466";
+        const googleScriptURL = "https://script.google.com/macros/s/AKfycbwwofTgTzGcZADgYlDk5pCdLXOwfaoA5SFHrsgIhJoyIz2hTLdpaYJVi0U4RcOUt0-F/exec";
+
+        document.getElementById("telegramForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const fullname = form.querySelector('input[name="fullname"]').value.trim();
+            const phone = form.querySelector('input[name="phone"]').value.trim();
+            const email = form.querySelector('input[name="email"]').value.trim();
+            const message = form.querySelector('textarea[name="message"]').value.trim();
+
+            const text = `📩 Новая заявка с сайта:\n\n👤 ФИО: ${fullname}\n📱 Телефон: ${phone}\n📧 Email: ${email}\n📝 Сообщение:\n${message}`;
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ chat_id: chatId, text })
+            });
+
+            const formData = new FormData();
+            formData.append("fullname", fullname);
+            formData.append("phone", phone);
+            formData.append("email", email);
+            formData.append("message", message);
+
+            fetch(googleScriptURL, {
+                method: "POST",
+                body: formData
+            })
+                .then(() => {
+                    document.getElementById("form-status").innerHTML =
+                        `<span style="color: green;">✅ Спасибо! Ваша заявка получена. Вы можете выбрать юриста из списка ниже.</span>`;
+                    document.getElementById("telegramForm").reset();
+                    const lawyerBlock = document.getElementById("lawyer-block");
+                    lawyerBlock.style.display = "block";
+                    lawyerBlock.scrollIntoView({ behavior: "smooth" });
+                })
+                .catch(() => {
+                    document.getElementById("form-status").textContent = "Ошибка при отправке.";
+                    document.getElementById("form-status").style.color = "red";
+                });
+        });
+    </script>
 </body>
+
 </html>
 
