@@ -278,23 +278,21 @@
 
       const form = e.target;
       const fullname = form.querySelector('input[name="fullname"]').value.trim();
-      const phone = form.querySelector('input[name="phone"]').value.trim();
-      const email = form.querySelector('input[name="email"]').value.trim();
-      const message = form.querySelector('textarea[name="message"]').value.trim();
+const message = form.querySelector('textarea[name="message"]').value.trim();
 
-      const text = `📩 Новая заявка с сайта:\n\n👤 ФИО: ${fullname}\n📱 Телефон: ${phone}\n📧 Email: ${email}\n📝 Сообщение:\n${message}`;
+const text = `📩 Новая заявка с сайта:\n\n👤 Имя: ${fullname}\n📝 Сообщение:\n${message}`;
 
       fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chat_id: chatId, text })
       });
-
-      const formData = new FormData();
+      
+const formData = new FormData();
       formData.append("fullname", fullname);
       formData.append("phone", phone);
       formData.append("email", email);
-      formData.append("message", message);
+      formData.append("message", message);      
 
       fetch(googleScriptURL, {
         method: "POST",
