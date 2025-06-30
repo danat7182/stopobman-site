@@ -57,7 +57,25 @@
     }
     .footer a { color: #fff; text-decoration: none; margin-left: 10px; }
     .instagram-footer { margin-top: 10px; }
-  
+ @media (max-width: 768px) {
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    gap: 10px;
+  }
+
+  .nav-links li {
+    padding: 0 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-links li:last-child {
+    border-right: none;
+  }
+
   .hero {
     padding: 30px 10px;
   }
@@ -87,6 +105,8 @@
     font-size: 24px;
     margin-bottom: 10px;
   }
+}
+
 }
 </style>
 </head>
