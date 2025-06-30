@@ -256,21 +256,7 @@
     </div>
   </footer>
 
-  <script>
-    function setLanguage(lang) {
-      const allElements = document.querySelectorAll('[data-lang]');
-      allElements.forEach(el => {
-        el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
-      });
-      localStorage.setItem('site-lang', lang);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const lang = localStorage.getItem('site-lang') || 'ru';
-      setLanguage(lang);
-    });
-
-   <script>
+ <script>
   function setLanguage(lang) {
     const allElements = document.querySelectorAll('[data-lang]');
     allElements.forEach(el => {
@@ -335,5 +321,3 @@
 </script>
 </body>
 </html>
-
-
